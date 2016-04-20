@@ -28,4 +28,5 @@ public class MathTools {
         if (n <= 0) throw new IllegalArgumentException();
         return 31 - Integer.numberOfLeadingZeros(n);
     }
+
 }
