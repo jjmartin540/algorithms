@@ -8,8 +8,9 @@ import java.util.LinkedList;
  * Created by james on 4/18/16.
  */
 public class HashTable {
-    HashTableNode[] elements;
+    private HashTableNode[] elements;
     private int randomHugePrime = 79999;
+    private int count = 0;
 
     public HashTable(int maxCollisions, int capacity) {
         int minimum = (int) Math.floor(capacity / maxCollisions);
@@ -55,6 +56,7 @@ public class HashTable {
         } else {
             elements[key % randomHugePrime].setValue(key, value);
         }
+        count = count + 1;
     }
 
     public void deleteElement(int key) {
@@ -71,12 +73,35 @@ public class HashTable {
                 }
             }
         }
+        count = count - 1;
     }
     //k mod m where m > n
     // linear chain after
 
     //multiplicative method
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (HashTableNode n : elements) {
+            //skip empty entries
+            if (n != null && n.value != null) {
+                if (first) {
+                    first = false;
+                } else {
+                    sb.append("\n");
+                }
+                sb.append("mapped key: ");
+                sb.append(n.key % randomHugePrime);
+                sb.append("\n");
+                sb.append(n.toString());
+            }
+        }
+        if (sb.length() > 0) {
+            return sb.toString();
+        }
+        return null;
+    }
 
     //universal perfect hashing
     private class HashTableNode {
@@ -99,6 +124,19 @@ public class HashTable {
                     collisions = new LinkedList<>();
                     collisions.add(new HashTableNode(key, value));
                 }
+            }
+        }
+
+        public int size(){
+            return count;
+        }
+
+        @Override
+        public String toString() {
+            if (collisions == null || collisions.size() == 0) {
+                return "key: " + key + " value: " + value;
+            } else {
+                return "key: " + key + " value: " + value + "\n" + new GenericStringUtils<HashTableNode>().join("\n", collisions);
             }
         }
     }

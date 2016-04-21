@@ -1,3 +1,4 @@
+import martinez.james.CLRFRedBlackTree;
 import org.junit.Test;
 
 /**
@@ -6,6 +7,13 @@ import org.junit.Test;
 public class CLRFRedBlackTreeTester {
     @Test
     public void makeTreeTest(){
-
+        CLRFRedBlackTree t = new CLRFRedBlackTree();
+        t.insert(5);
+        t.insert(3);
+        t.insert(13);
+        t.insert(4);
+        System.out.println(t.toString());
+        t.delete(5);
+        System.out.println(t.toString());
     }
 }
