@@ -299,7 +299,7 @@ public class CLRFRedBlackTree {
         if (height == 0) {
             return "Tree is currently empty";
         }
-        //int printingHeight = height > 0 ? height - 1 : 0;//We don't want to print nil nodes
+
         if (count == 1) {
             return "The tree currently has one node whose value is: " + String.valueOf(this.root.key);
         }
