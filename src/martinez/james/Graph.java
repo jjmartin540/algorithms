@@ -1,5 +1,6 @@
 package martinez.james;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,16 +9,17 @@ import java.util.List;
  */
 public class Graph {
     private int numVertices = 0;
-    private List<List<Vertex>> adjacencyList;
+    private List<ArrayList<Vertex>> adjacencyList;
     List<Vertex> vertices;
 
     public Graph(){
         vertices = new LinkedList<>();
+        adjacencyList = new ArrayList<>();
     }
 
     public void insertVertex(Vertex v){
         v.index = numVertices;
-        adjacencyList.add(numVertices, new LinkedList<>());
+        adjacencyList.add(numVertices, new ArrayList<>());
         vertices.add(v);
         numVertices++;
     }
